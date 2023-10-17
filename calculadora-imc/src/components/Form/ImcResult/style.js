@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   resultImc: {
-    flex: 1,
     marginTop: 12,
     paddingTop: 20,
     borderRadius: 50,

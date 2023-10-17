@@ -26,10 +26,10 @@ export default function Form() {
   const [focusWeight, setFocusWeight] = useState(false);
   const [imcList, setImcList] = useState([]);
 
-
-  //Provisório!
+  //Inicia o formulário
   function formInit() {
     setImc(null);
+    setTextButton("Calcular");
   }
 
   //Cálculo do IMC
@@ -50,8 +50,6 @@ export default function Form() {
       message: "Campos vazios!",
     };
 
-    console.log(imcList);
-
     try {
       //Campo vazio
       if (!weight || !height) {
@@ -63,7 +61,6 @@ export default function Form() {
 
       setMessageImc("Seu IMC é igual a:");
       setTextButton("Calcular novamente");
-
     } catch (err) {
       //Erro
       Alert.alert("Atenção!", `${err.message}`, [{ text: "OK" }], {
@@ -71,10 +68,8 @@ export default function Form() {
       });
       Vibration.vibrate();
 
-      setImc(null);
       setMessageImc("Preencha os campos acima!");
-      setTextButton("Calcular");
-
+      formInit();
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -90,39 +85,40 @@ export default function Form() {
 
   return (
     <View style={styles.formContext}>
-
       {imc ? (
         <View style={styles.exibitionResultImc}>
-
           <ActivityIndicator size={60} color="#FF0043" animating={loading} />
-          <ImcResult messageResultImc={messageImc} resultImc={imc} />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={formInit}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.buttonText}> {textbutton} </Text>
-          </TouchableOpacity>
 
-          <FlatList
-            style={styles.listImcs}
-            data={imcList.reverse()}
-            renderItem={({ item }) => {
-              return (
-                <Text style={styles.resultImcItem}>
-                  <Text style={styles.textResultItemList}>
-                    Resultado IMC = {item.imc}{" "}
-                  </Text>
-                </Text>
-              );
-            }}
-            keyExtractor={(item) => {
-              item.id;
-            }}
-          ></FlatList>
-          
+          {!loading && (
+            <View>
+              <ImcResult messageResultImc={messageImc} resultImc={imc} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={formInit}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.buttonText}> {textbutton} </Text>
+              </TouchableOpacity>
+
+              <FlatList
+                style={styles.listImcs}
+                data={imcList.reverse()}
+                renderItem={({ item }) => {
+                  return (
+                    <Text style={styles.resultImcItem}>
+                        Resultado IMC = 
+                      <Text style={styles.textResultItemList}>
+                          {item.imc}
+                      </Text>
+                    </Text>
+                  );
+                } 
+              }
+                keyExtractor={ (item) => {item.id}}
+              ></FlatList>
+            </View>
+          )}
         </View>
-
       ) : (
         <Pressable onPress={Keyboard.dismiss} style={styles.form}>
           <Text style={styles.formLabel}>Altura</Text>

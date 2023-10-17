@@ -6,7 +6,7 @@ export default function Title() {
 
   return (
     <View style={styles.boxTitle}>
-      <Text style={styles.textTitle}>CÁLCULO DE IMC</Text>
+      <Text style={styles.textTitle}>CALCULADORA IMC</Text>
     </View>
   );
   

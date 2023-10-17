@@ -78,6 +78,22 @@ const styles = StyleSheet.create({
   exibitionResultImc: {
     width: "100%",
     height: "80%",
+  },
+
+  listImcs: {
+    marginTop: 20,
+  },
+
+  resultImcItem: {
+    color: "red",
+    width: "100%",
+    marginLeft: 140,
+    fontSize: 18
+
+  },
+
+  textResultItemList: {
+    fontSize: 26
   }
 });
 
