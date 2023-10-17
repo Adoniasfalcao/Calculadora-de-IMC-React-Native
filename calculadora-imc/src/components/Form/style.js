@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 20,
+    fontWeight: "bold"
   },  
 
   button: {
@@ -73,6 +74,11 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 30,
   },
+
+  exibitionResultImc: {
+    width: "100%",
+    height: "80%",
+  }
 });
 
 export default styles;

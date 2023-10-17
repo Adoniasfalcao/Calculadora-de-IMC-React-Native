@@ -14,22 +14,25 @@ const styles = StyleSheet.create({
   },
 
   info: {
-    color: "#FF0043",
+    color: "#000000",
     fontSize: 18,
     fontWeight: "bold",
   },
 
   resultNumber: {
-    color: "#FF0043",
+    color: "#13C1FE",
     fontSize: 48,
     fontWeight: "bold",
   },
 
+ 
   category: {
-    color: "#FF0043",
-    fontSize: 38,
+    color: "#000000",
+    fontSize: 28,
     fontWeight: "bold",
   },
+
+
 
   buttonShare: {
     width: "100%",
