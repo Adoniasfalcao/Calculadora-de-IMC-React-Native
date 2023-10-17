@@ -6,10 +6,10 @@ import {
   Alert,
   TouchableOpacity,
   ActivityIndicator,
+  Vibration,
 } from "react-native";
 import ImcResult from "./ImcResult/ImcResult";
 import styles from "./style";
-
 
 export default function Form() {
 
@@ -19,25 +19,20 @@ export default function Form() {
   const [messageImc, setMessageImc] = useState();
   const [imc, setImc] = useState();
   const [textbutton, setTextButton] = useState("Calcular");
-  const [animate, setAnimate] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
 
   //Cálculo do IMC
   function imcCalculator() {
     return setImc((weight / height ** 2).toFixed(2));
   }
 
-
   //Validação de dados
   function validationImc() {
-
     //Declaração de exception
     const errorException = {
       cod: 1,
       message: "Campos vazios!",
     };
-
-    setAnimate(true)
 
     try {
       //Campo vazio
@@ -45,26 +40,33 @@ export default function Form() {
         throw errorException;
       }
 
-      imcCalculator()
-      setMessageImc("Seu IMC é igual a:")
-      setTextButton('Calcular novamente')
-      return;
+      setLoading(true);
+      imcCalculator();
 
-    } catch (err) {
-      
-      Alert.alert("Atenção!", `${err.message}`,[{text: "OK",},],{ cancelable: false });
-      setImc(null)
-      setMessageImc("Preencha os campos acima!")
-      setTextButton("Calcular")
-      
-    } finally {
       //Reseta os valores
       setWeight(null);
       setHeight(null);
 
-      setTimeout( () => {
-        setAnimate(false)
-      },1000)
+      setMessageImc("Seu IMC é igual a:");
+      setTextButton("Calcular novamente");
+
+      return;
+
+    } catch (err) {
+      //Erro
+      Alert.alert("Atenção!", `${err.message}`, [{ text: "OK" }], {
+        cancelable: false,
+      });
+      Vibration.vibrate();
+
+      setImc(null);
+      setMessageImc("Preencha os campos acima!");
+      setTextButton("Calcular");
+
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 600);
     }
   }
 
@@ -99,13 +101,14 @@ export default function Form() {
         >
           <Text style={styles.buttonText}> {textbutton} </Text>
         </TouchableOpacity>
-
       </View>
 
-      <ActivityIndicator size="large" color="#FF0043" animating={animate} />
-      {!animate && <ImcResult messageResultImc={messageImc} resultImc={imc} />}
+      <ActivityIndicator size={60} color="#FF0043" animating={loading} />
 
+      {!loading && imc && (
+        <ImcResult messageResultImc={messageImc} resultImc={imc} />
+      )}
+      
     </View>
-
   );
 }

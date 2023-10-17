@@ -24,6 +24,29 @@ const styles = StyleSheet.create({
     fontSize: 48,
     fontWeight: "bold",
   },
+
+  category: {
+    color: "#FF0043",
+    fontSize: 38,
+    fontWeight: "bold",
+  },
+
+  buttonShare: {
+    width: "90%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FF0043",
+    borderRadius: 50,
+    paddingTop: 12,
+    paddingBottom: 12,
+    marginLeft: 20,
+    marginTop: 30,
+  },
+
+  buttonShareText: {
+    color: "#fff",
+    fontSize: 20,
+  },
 });
 
 export default styles;
