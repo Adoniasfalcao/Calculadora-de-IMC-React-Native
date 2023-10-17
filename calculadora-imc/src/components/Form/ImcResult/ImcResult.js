@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Share } from "react-native";
 import styles from "./style";
 
 export default function ImcResult({ messageResultImc = "", resultImc }) {
-
+  
   const onShare = async () => {
     const result = await Share.share({
       message: `Meu imc hoje é: ${resultImc}`,
@@ -16,8 +16,13 @@ export default function ImcResult({ messageResultImc = "", resultImc }) {
       <Text style={styles.resultNumber}>{resultImc}</Text>
 
       <View>
-        <TouchableOpacity style={styles.buttonShare} onPress={onShare}>
+        <TouchableOpacity
+          style={styles.buttonShare}
+          onPress={onShare}
+          activeOpacity={0.7}
+        >
           <Text style={styles.buttonShareText}>Compartilhar</Text>
+
         </TouchableOpacity>
       </View>
     </View>

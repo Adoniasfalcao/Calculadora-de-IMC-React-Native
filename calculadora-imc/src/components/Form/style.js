@@ -9,13 +9,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    marginTop: 30,
+    marginTop: 40,
+    paddingTop: 15,
   },
 
   form: {
     width: "100%",
     height: "auto",
-    marginTop: 30,
+    marginTop: 20,
     padding: 10,
   },
 
@@ -32,6 +33,28 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     paddingLeft: 10,
+  },
+
+  formInputFocusWeight: {
+    width: "90%",
+    borderRadius: 50,
+    backgroundColor: "#F2F2F2",
+    height: 40,
+    margin: 12,
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderColor: "#FF0043"
+  },
+
+  formInputFocusHeight: {
+    width: "90%",
+    borderRadius: 50,
+    backgroundColor: "#F2F2F2",
+    height: 40,
+    margin: 12,
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderColor: "#FF0043"
   },
 
   buttonText: {
