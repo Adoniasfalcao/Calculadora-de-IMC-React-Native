@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
 
   listImcs: {
-    marginTop: 20,
+    marginTop: 40,
   },
 
   resultImcItem: {

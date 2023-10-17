@@ -85,12 +85,13 @@ export default function Form() {
 
   return (
     <View style={styles.formContext}>
+
       {imc ? (
         <View style={styles.exibitionResultImc}>
           <ActivityIndicator size={60} color="#FF0043" animating={loading} />
 
           {!loading && (
-            <View>
+            <View style={styles.exibitionResultImc}>
               <ImcResult messageResultImc={messageImc} resultImc={imc} />
               <TouchableOpacity
                 style={styles.button}
@@ -101,8 +102,10 @@ export default function Form() {
               </TouchableOpacity>
 
               <FlatList
+                showsVerticalScrollIndicator={false}
                 style={styles.listImcs}
                 data={imcList.reverse()}
+                contentContainerStyle={{flexGrow:1}}
                 renderItem={({ item }) => {
                   return (
                     <Text style={styles.resultImcItem}>
@@ -116,8 +119,10 @@ export default function Form() {
               }
                 keyExtractor={ (item) => {item.id}}
               ></FlatList>
+
             </View>
           )}
+
         </View>
       ) : (
         <Pressable onPress={Keyboard.dismiss} style={styles.form}>
